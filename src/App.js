@@ -1,6 +1,7 @@
 import './App.css';
 import React, { useEffect, useState } from 'react';
 import { io } from 'socket.io-client';
+import axios from 'axios';
 const SOCKET_URL = process.env.REACT_APP_SOCKET_URL; // Backend URL
 
 
@@ -14,6 +15,8 @@ function App() {
   const [result, setResult] = useState('');
 
   useEffect(() => {
+    //Ping server to wake it up
+    axios.get(SOCKET_URL);
     // Connect to the WebSocket server
     const socket = io(SOCKET_URL);
     setSocket(socket);
